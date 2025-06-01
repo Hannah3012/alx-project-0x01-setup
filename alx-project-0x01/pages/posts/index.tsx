@@ -14,7 +14,6 @@ const Posts: React.FC<PostsPageProps> = ({ posts }) => {
 
   const handleAddPost = (newPost: PostData) => {
     setPost({ ...newPost, id: posts.length + 1 });
-    // You might also want to add the new post to your local list if needed.
   };
 
   return (
