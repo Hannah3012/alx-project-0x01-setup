@@ -6,14 +6,14 @@ import { UserProps, UserData } from "@/interfaces";
 
 const Users: React.FC<{ posts: UserProps[] }> = ({ posts }) => {
     const [isModalOpen, setModalOpen] = useState(false);
-    const [users, setUsers] = useState<UserProps[]>(posts);
+    const [newUsers, setNewUsers] = useState<UserProps[]>([]);
 
     const handleAddUser = (newUser: UserData) => {
         const addedUser: UserProps = {
-            id: users.length + 1,
+            id: posts.length + newUsers.length + 1,
             ...newUser
         };
-        setUsers([...users, addedUser]);
+        setNewUsers([...newUsers, addedUser]);
     };
 
     return (
@@ -30,7 +30,10 @@ const Users: React.FC<{ posts: UserProps[] }> = ({ posts }) => {
                     </button>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
-                    {users.map((user) => (
+                    {posts.map((user) => (
+                        <UserCard key={user.id} {...user} />
+                    ))}
+                    {newUsers.map((user) => (
                         <UserCard key={user.id} {...user} />
                     ))}
                 </div>
